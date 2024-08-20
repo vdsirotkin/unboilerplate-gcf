@@ -42,6 +42,7 @@
                 <configuration>
                     <publishingServerId>central</publishingServerId>
                     <tokenAuth>true</tokenAuth>
+                    <excludeArtifacts>testing</excludeArtifacts>
                 </configuration>
             </plugin>
             <plugin>
