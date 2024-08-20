@@ -29,15 +29,15 @@ public abstract class PubSubFunction<T> implements CloudEventsFunction {
 
     @Override
     public void accept(CloudEvent event) throws InvalidProtocolBufferException {
-        CloudEventData eventData = event.getData();
+        var eventData = event.getData();
         if (eventData == null) {
             return;
         }
-        String cloudEventData = new String(eventData.toBytes(), StandardCharsets.UTF_8);
-        MessagePublishedData.Builder dataBuilder = MessagePublishedData.newBuilder();
+        var cloudEventData = new String(eventData.toBytes(), StandardCharsets.UTF_8);
+        var dataBuilder = MessagePublishedData.newBuilder();
         JsonFormat.parser().merge(cloudEventData, dataBuilder);
-        MessagePublishedData data = dataBuilder.build();
-        String decodedData = data.getMessage().getData().toString(StandardCharsets.UTF_8);
+        var data = dataBuilder.build();
+        var decodedData = data.getMessage().getData().toString(StandardCharsets.UTF_8);
         accept(serializer.deserialize(decodedData, messageType), data, event);
     }
 

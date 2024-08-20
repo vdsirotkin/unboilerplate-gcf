@@ -1,21 +1,6 @@
 package com.vdsirotkin.gcf;
 
-public class TestDto {
-    private final String name;
-    private final int age;
-
-    public TestDto(String name, int age) {
-        this.name = name;
-        this.age = age;
-    }
-
-    public String getName() {
-        return name;
-    }
-
-    public int getAge() {
-        return age;
-    }
+public record TestDto(String name, int age) {
 
     @Override
     public String toString() {
