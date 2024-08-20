@@ -38,8 +38,8 @@ public abstract class PubSubFunction<T> implements CloudEventsFunction {
         JsonFormat.parser().merge(cloudEventData, dataBuilder);
         MessagePublishedData data = dataBuilder.build();
         String decodedData = data.getMessage().getData().toString(StandardCharsets.UTF_8);
-        accept(serializer.deserialize(decodedData, messageType), event);
+        accept(serializer.deserialize(decodedData, messageType), data, event);
     }
 
-    public abstract void accept(T message, CloudEvent event);
+    public abstract void accept(T message, MessagePublishedData data, CloudEvent event);
 }
